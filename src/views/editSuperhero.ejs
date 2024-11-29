@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Editar Superhéroe</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gradient-to-br from-purple-800 via-purple-900 to-black min-h-screen text-white flex items-center justify-center p-6">
+  <div class="w-full max-w-lg bg-purple-900 p-8 rounded-lg shadow-2xl">
+      <h1 class="text-3xl font-extrabold text-purple-300 mb-6 text-center">Editar Superhéroe</h1>
+      <form action="/api/heroes/edit/<%= superheroe.id %>?_method=PUT" method="POST" class="p-6 rounded-lg">
+          <input type="hidden" name="_method" value="PUT">
+          <div class="mb-4">
+              <label for="nombreSuperHeroe" class="block text-purple-300 font-bold mb-2">Nombre de Superhéroe:</label>
+              <input type="text" id="nombreSuperHeroe" name="nombreSuperHeroe" value="<%= superheroe.nombreSuperHeroe %>" required class="border border-purple-600 bg-purple-800 text-white p-2 rounded w-full focus:ring-2 focus:ring-purple-500">
+          </div>
+          <div class="mb-4">
+              <label for="nombreReal" class="block text-purple-300 font-bold mb-2">Nombre Real:</label>
+              <input type="text" id="nombreReal" name="nombreReal" value="<%= superheroe.nombreReal %>" required class="border border-purple-600 bg-purple-800 text-white p-2 rounded w-full focus:ring-2 focus:ring-purple-500">
+          </div>
+          <div class="mb-4">
+              <label for="edad" class="block text-purple-300 font-bold mb-2">Edad:</label>
+              <input type="number" id="edad" name="edad" value="<%= superheroe.edad %>" required min="0" class="border border-purple-600 bg-purple-800 text-white p-2 rounded w-full focus:ring-2 focus:ring-purple-500">
+          </div>
+          <div class="mb-4">
+              <label for="planetaOrigen" class="block text-purple-300 font-bold mb-2">Planeta de Origen:</label>
+              <input type="text" id="planetaOrigen" name="planetaOrigen" value="<%= superheroe.planetaOrigen %>" required class="border border-purple-600 bg-purple-800 text-white p-2 rounded w-full focus:ring-2 focus:ring-purple-500">
+          </div>
+          <div class="mb-4">
+              <label for="debilidad" class="block text-purple-300 font-bold mb-2">Debilidad:</label>
+              <input type="text" id="debilidad" name="debilidad" value="<%= superheroe.debilidad %>" required class="border border-purple-600 bg-purple-800 text-white p-2 rounded w-full focus:ring-2 focus:ring-purple-500">
+          </div>
+          <div class="mb-4">
+              <label for="poderes" class="block text-purple-300 font-bold mb-2">Poderes (separados por comas):</label>
+              <input type="text" id="poderes" name="poderes" value="<%= superheroe.poderes.join(', ') %>" required class="border border-purple-600 bg-purple-800 text-white p-2 rounded w-full focus:ring-2 focus:ring-purple-500">
+          </div>
+          <div class="mb-4">
+              <label for="aliados" class="block text-purple-300 font-bold mb-2">Aliados:</label>
+              <input type="text" id="aliados" name="aliados" value="<%= superheroe.aliados.join(', ') %>" required class="border border-purple-600 bg-purple-800 text-white p-2 rounded w-full focus:ring-2 focus:ring-purple-500">
+          </div>
+          <div class="mb-4">
+              <label for="enemigos" class="block text-purple-300 font-bold mb-2">Enemigos:</label>
+              <input type="text" id="enemigos" name="enemigos" value="<%= superheroe.enemigos.join(', ') %>" required class="border border-purple-600 bg-purple-800 text-white p-2 rounded w-full focus:ring-2 focus:ring-purple-500">
+          </div>
+          <div class="flex justify-between">
+              <a href="/dashboard" class="bg-red-600 hover:bg-red-500 text-white font-bold py-2 px-4 rounded-lg shadow-lg transition duration-300">Cancelar</a>
+              <button type="submit" class="bg-purple-600 hover:bg-purple-500 text-white font-bold py-2 px-4 rounded-lg shadow-lg transition duration-300">Actualizar Superhéroe</button>
+          </div>
+      </form>
+  </div>
+</body>
+
+</html>

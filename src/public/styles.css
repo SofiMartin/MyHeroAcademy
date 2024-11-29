@@ -1,0 +1,117 @@
+/* Tipografía y fondo */
+body {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
+  background-image: url('images/all-might-pictures.webp');
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: #fff;
+  margin: 0;
+}
+
+/* Contenedor principal */
+.main-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.call-main {
+  width: 100%;
+  height: auto;
+  filter: brightness(0.7); /* Oscurece un poco la imagen de fondo */
+}
+
+.overlay-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #fff;
+  text-align: center;
+  padding: 20px 40px;
+  border-radius: 10px;
+  font-size: 1.8rem;
+  text-shadow: 0 4px 10px rgba(0, 0, 0, 0.8);
+  background: rgba(0, 0, 0, 0.6);
+}
+
+/* Botón de llamada a la acción */
+.cta-button {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 10%;
+  background: linear-gradient(90deg, #ff7e5f, #feb47b);
+  color: #fff;
+  font-weight: bold;
+  padding: 15px 30px;
+  border-radius: 30px;
+  text-transform: uppercase;
+  text-decoration: none;
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s;
+}
+
+.cta-button:hover {
+  transform: scale(1.1);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+}
+
+/* Encabezado neón */
+.neon-text {
+  color: #fff;
+  text-shadow: 0 0 5px #ff7e5f, 0 0 10px #feb47b, 0 0 20px #ff7e5f, 0 0 30px #ff4500;
+}
+
+/* Tarjetas */
+.card {
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 15px;
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  padding: 20px;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+}
+
+.card img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+.card h3 {
+  margin-bottom: 10px;
+  color: #444;
+  text-align: center;
+  font-size: 1.5rem;
+}
+
+.card p {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #555;
+  text-align: left;
+}
+
+/* Grid responsive */
+.grid {
+  display: grid;
+  gap: 20px;
+}
+
+@media (min-width: 768px) {
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}

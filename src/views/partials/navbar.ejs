@@ -1,0 +1,39 @@
+<nav class="bg-gradient-to-r from-purple-700 via-purple-800 to-purple-900 p-6 shadow-lg">
+  <div class="container mx-auto flex justify-between items-center">
+    <!-- Logo -->
+    <a href="/" class="flex items-center">
+      <img src="/images/alldeku.webp" alt="logo" class="h-12 w-auto mr-4">
+      <span class="text-white text-lg font-bold tracking-wide">My Hero</span>
+    </a>
+    
+    <!-- Menú Hamburguesa para móviles -->
+    <button id="menu-toggle" class="md:hidden text-white focus:outline-none">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+      </svg>
+    </button>
+    
+    <!-- Enlaces -->
+    <ul id="menu" class="hidden md:flex space-x-6 text-white text-sm uppercase font-semibold">
+      <li>
+        <a href="/" class="hover:text-gray-200 relative group">
+          Inicio
+          <span class="underline"></span>
+        </a>
+      </li>
+      <li>
+        <a href="/dashboard" class="hover:text-gray-200 relative group">
+          Dashboard
+          <span class="underline"></span>
+        </a>
+      </li>
+      <li>
+        <a href="/addSuperhero" class="hover:text-gray-200 relative group">
+          Agregar Superhéroe
+          <span class="underline"></span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</nav>
+

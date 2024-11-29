@@ -1,0 +1,80 @@
+<div class="main-container relative">
+  <img src="/images/deku-pictures.webp" alt="Descripción de la imagen" class="max-w-full h-auto call-main">
+  <p class="overlay-text">¡Bienvenidos! Siéntase cómodo conociendo los mejores héroes. ¡Cree y edítelos a su gusto!</p>
+  <a href="#nuestros-heroes" class="cta-button">
+    Conoce My Hero Academia
+  </a>
+</div>
+
+<section class="py-20" id="nuestros-heroes">
+  <div class="container mx-auto text-center">
+    <h2 class="text-4xl font-bold mb-12 neon-text">Conoce nuestros Superhéroes</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <!-- Card 1 -->
+      <div class="card">
+        <h3 class="text-xl font-semibold">Deku</h3>
+        <img class="mt-4" src="/images/Deku.webp" alt="Deku">
+        <p class="mt-4 text-left">
+          Nombre: Izuku Midoriya (Deku)<br>
+          Edad: 16 años<br>
+          Planeta: Tierra<br>
+          Debilidad: Control inestable de su poder, inseguridad y autoculpa.<br>
+          Poderes: One For All, Full Cowl, Shoot Style, Danger Sense<br>
+          Aliados: All Might, Bakugo<br>
+          Enemigos: All For One
+        </p>
+      </div>
+      <div class="card p-6 border border-black bg-white shadow-lg">
+        <h3 class="text-xl font-semibold">All Might</h3>
+        <img class="mt-4" src="/images/allmight.webp" alt="allmight">
+        <p class="mt-4 text-left">
+          Nombre: Toshinori Yagi<br>
+          Edad: 50 años<br>
+          Planeta: Tierra<br>
+          Debilidad: Límite de tiempo en su forma musculosa,<br>
+          Poderes: One For All, Detroit Smash, Texas Smash, Carolina Smash<br>
+          Aliados: Sir Nighteye, Sr Torino<br>
+          Enemigos: All For One
+        </p>
+      </div>
+      <div class="card p-6 border border-black bg-white shadow-lg">
+        <h3 class="text-xl font-semibold">Bakugo</h3>
+        <img class="mt-4" src="/images/bakugo.webp" alt="Bakugo">
+        <p class="mt-4 text-left">
+          Nombre: Katsuki Bakugo<br>
+          Edad: 16 años<br>
+          Planeta: Tierra<br>
+          Debilidad: Impaciencia, Arrogancia, No trabaja en equipo<br>
+          Poderes: Explosión, Stun Grenade, Howitzer Impact<br>
+          Aliados: Izuku Midoriya<br>
+          Enemigos: Slade
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+<script>
+const cards = document.querySelectorAll('.card');
+
+cards.forEach(card => {
+  card.addEventListener('mousemove', e => {
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+
+    const xPercent = (x / rect.width - 0.5) * 20; // Ajusta la inclinación en el eje X
+    const yPercent = (y / rect.height - 0.5) * 20; // Ajusta la inclinación en el eje Y
+
+    card.style.transform = `rotateX(${-yPercent}deg) rotateY(${xPercent}deg) scale(1.05)`;
+    
+    // Mueve la capa plástica con el mouse
+    const plasticLayer = card.querySelector('::before');
+    plasticLayer.style.transform = `translate(${xPercent}%, ${yPercent}%)`;
+  });
+
+  card.addEventListener('mouseleave', () => {
+    card.style.transform = '';
+  });
+});
+  </script>
+

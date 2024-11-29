@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agregar Superhéroe</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        .error {
+            color: #ff6ea3;
+            font-size: 0.875rem;
+        }
+    </style>
+</head>
+
+<body class="bg-gradient-to-br from-purple-800 via-purple-900 to-black min-h-screen text-white flex items-center justify-center p-6">
+    <div class="w-full max-w-lg bg-purple-900 p-8 rounded-lg shadow-2xl">
+        <h1 class="text-3xl font-extrabold text-purple-300 mb-6 text-center">Agregar Superhéroe</h1>
+        <form id="superheroForm" action="/api/heroes" method="POST" onsubmit="return validarFormulario(event)">
+            <div class="mb-4">
+                <label for="nombreSuperHeroe" class="block text-purple-300 font-bold mb-2">Nombre de Superhéroe:</label>
+                <input type="text" id="nombreSuperHeroe" name="nombreSuperHeroe" required minlength="3" maxlength="60" class="border border-purple-600 bg-purple-800 text-white p-2 rounded w-full focus:ring-2 focus:ring-purple-500">
+                <span id="errorNombreSuperHeroe" class="error"></span>
+            </div>
+            <div class="mb-4">
+                <label for="nombreReal" class="block text-purple-300 font-bold mb-2">Nombre Real:</label>
+                <input type="text" id="nombreReal" name="nombreReal" required minlength="3" maxlength="60" class="border border-purple-600 bg-purple-800 text-white p-2 rounded w-full focus:ring-2 focus:ring-purple-500">
+                <span id="errorNombreReal" class="error"></span>
+            </div>
+            <div class="mb-4">
+                <label for="edad" class="block text-purple-300 font-bold mb-2">Edad:</label>
+                <input type="number" id="edad" name="edad" required min="0" class="border border-purple-600 bg-purple-800 text-white p-2 rounded w-full focus:ring-2 focus:ring-purple-500">
+                <span id="errorEdad" class="error"></span>
+            </div>
+            <div class="mb-4">
+                <label for="planetaOrigen" class="block text-purple-300 font-bold mb-2">Planeta de Origen:</label>
+                <input type="text" id="planetaOrigen" name="planetaOrigen" required class="border border-purple-600 bg-purple-800 text-white p-2 rounded w-full focus:ring-2 focus:ring-purple-500">
+                <span id="errorPlanetaOrigen" class="error"></span>
+            </div>
+            <div class="mb-4">
+                <label for="debilidad" class="block text-purple-300 font-bold mb-2">Debilidad:</label>
+                <input type="text" id="debilidad" name="debilidad" required class="border border-purple-600 bg-purple-800 text-white p-2 rounded w-full focus:ring-2 focus:ring-purple-500">
+                <span id="errorDebilidad" class="error"></span>
+            </div>
+            <div class="mb-4">
+                <label for="poderes" class="block text-purple-300 font-bold mb-2">Poderes (separados por comas):</label>
+                <input type="text" id="poderes" name="poderes" required placeholder="Ejemplo: Vuelo, Invisibilidad" class="border border-purple-600 bg-purple-800 text-white p-2 rounded w-full focus:ring-2 focus:ring-purple-500">
+                <span id="errorPoderes" class="error"></span>
+            </div>
+            <div class="mb-4">
+                <label for="aliados" class="block text-purple-300 font-bold mb-2">Aliados:</label>
+                <input type="text" id="aliados" name="aliados" required class="border border-purple-600 bg-purple-800 text-white p-2 rounded w-full focus:ring-2 focus:ring-purple-500">
+                <span id="errorAliados" class="error"></span>
+            </div>
+            <div class="mb-4">
+                <label for="enemigos" class="block text-purple-300 font-bold mb-2">Enemigos:</label>
+                <input type="text" id="enemigos" name="enemigos" required class="border border-purple-600 bg-purple-800 text-white p-2 rounded w-full focus:ring-2 focus:ring-purple-500">
+                <span id="errorEnemigos" class="error"></span>
+            </div>
+            <div class="flex justify-between">
+                <a href="./dashboard" class="bg-red-600 hover:bg-red-500 text-white font-bold py-2 px-4 rounded-lg shadow-lg transition duration-300">Cancelar</a>
+                <button type="submit" class="bg-purple-600 hover:bg-purple-500 text-white font-bold py-2 px-4 rounded-lg shadow-lg transition duration-300">Agregar</button>
+            </div>
+        </form>
+    </div>
+    </form>
+    <script>
+        function validarFormulario(event) {
+            let isValid = true;
+
+            // Validación del nombre de superhéroe
+            const nombreSuperHeroe = document.getElementById('nombreSuperHeroe').value;
+            if (nombreSuperHeroe.length < 3) {
+                document.getElementById('errorNombreSuperHeroe').innerText = 'El nombre de superhéroe debe tener al menos 3 caracteres.';
+                isValid = false;
+            } else {
+                document.getElementById('errorNombreSuperHeroe').innerText = '';
+            }
+
+            // Validación del nombre real
+            const nombreReal = document.getElementById('nombreReal').value;
+            if (nombreReal.length < 3) {
+                document.getElementById('errorNombreReal').innerText = 'El nombre real debe tener al menos 3 caracteres.';
+                isValid = false;
+            } else {
+                document.getElementById('errorNombreReal').innerText = '';
+            }
+
+            // Validación de la edad
+            const edad = document.getElementById('edad').value;
+            if (edad < 0) {
+                document.getElementById('errorEdad').innerText = 'La edad no puede ser negativa.';
+                isValid = false;
+            } else {
+                document.getElementById('errorEdad').innerText = '';
+            }
+
+            // Validación del planeta de origen
+            const planetaOrigen = document.getElementById('planetaOrigen').value;
+            if (planetaOrigen.trim() === '') {
+                document.getElementById('errorPlanetaOrigen').innerText = 'El planeta de origen es obligatorio.';
+                isValid = false;
+            } else {
+                document.getElementById('errorPlanetaOrigen').innerText = '';
+            }
+
+            // Validación de la debilidad
+            const debilidad = document.getElementById('debilidad').value;
+            if (debilidad.trim() === '') {
+                document.getElementById('errorDebilidad').innerText = 'La debilidad es obligatoria.';
+                isValid = false;
+            } else {
+                document.getElementById('errorDebilidad').innerText = '';
+            }
+
+            // Validación de los poderes
+            const poderes = document.getElementById('poderes').value;
+            if (poderes.trim() === '') {
+                document.getElementById('errorPoderes').innerText = 'Los poderes son obligatorios.';
+                isValid = false;
+            } else {
+                document.getElementById('errorPoderes').innerText = '';
+            }
+
+            // Validación de los aliados
+            const aliados = document.getElementById('aliados').value;
+            if (aliados.trim() === '') {
+                document.getElementById('errorAliados').innerText = 'Los aliados son obligatorios.';
+                isValid = false;
+            } else {
+                document.getElementById('errorAliados').innerText = '';
+            }
+
+            // Validación de los enemigos
+            const enemigos = document.getElementById('enemigos').value;
+            if (enemigos.trim() === '') {
+                document.getElementById('errorEnemigos').innerText = 'Los enemigos son obligatorios.';
+                isValid = false;
+            } else {
+                document.getElementById('errorEnemigos').innerText = '';
+            }
+
+            return isValid; // Solo se enviará el formulario si es válido
+        }
+    </script>
+</body>
+</html>

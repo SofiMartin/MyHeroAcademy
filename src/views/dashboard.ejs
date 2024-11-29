@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard de Superhéroes</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-gradient-to-br from-purple-800 via-purple-900 to-black text-white min-h-screen">
+  <!-- Header -->
+  <header class="bg-gradient-to-r from-purple-700 via-purple-800 to-purple-900 p-6 shadow-md">
+    <div class="container mx-auto flex justify-between items-center">
+      <h1 class="text-white text-4xl font-extrabold tracking-wide">
+        🦸 Dashboard de <span class="text-purple-300">Superhéroes</span>
+      </h1>
+      <a href="/addSuperhero" class="bg-purple-600 hover:bg-purple-500 text-white font-bold py-2 px-4 rounded-lg shadow-lg transition duration-300">
+        + Agregar Superhéroe
+      </a>
+    </div>
+  </header>
+
+  <!-- Flash Message -->
+  <div class="container mx-auto mt-6">
+    <% if (success_msg && success_msg.length > 0) { %>
+      <div id="success-message" class="flex items-center justify-between bg-purple-600 text-white py-4 px-6 rounded-lg shadow-lg">
+        <div class="flex items-center space-x-3">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zM10 17l-5-5 1.414-1.414L10 14.172l7.586-7.586L19 8l-9 9z" />
+          </svg>
+          <span><%= success_msg[0] %></span>
+        </div>
+        <button id="close-btn" class="text-2xl font-bold hover:text-gray-300">&times;</button>
+      </div>
+    <% } %>
+  </div>
+
+  <!-- Main Content -->
+  <main class="container mx-auto p-8">
+    <h2 class="text-3xl font-bold text-purple-300 mb-6">Lista de Superhéroes</h2>
+    <div class="overflow-x-auto rounded-lg shadow-lg">
+      <table class="w-full bg-purple-900 text-white rounded-lg overflow-hidden">
+        <thead class="bg-purple-700">
+          <tr>
+            <th class="py-3 px-6 text-left">Superhéroe</th>
+            <th class="py-3 px-6 text-left">Nombre Real</th>
+            <th class="py-3 px-6 text-left">Edad</th>
+            <th class="py-3 px-6 text-left">Planeta</th>
+            <th class="py-3 px-6 text-left">Debilidad</th>
+            <th class="py-3 px-6 text-left">Poderes</th>
+            <th class="py-3 px-6 text-left">Aliados</th>
+            <th class="py-3 px-6 text-left">Enemigos</th>
+            <th class="py-3 px-6 text-left">Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% superheroes.forEach(function(superheroe) { %>
+            <tr class="hover:bg-purple-800 transition duration-300">
+              <td class="py-3 px-6"><%= superheroe.nombreSuperHeroe %></td>
+              <td class="py-3 px-6"><%= superheroe.nombreReal %></td>
+              <td class="py-3 px-6"><%= superheroe.edad %></td>
+              <td class="py-3 px-6"><%= superheroe.planetaOrigen %></td>
+              <td class="py-3 px-6"><%= superheroe.debilidad %></td>
+              <td class="py-3 px-6"><%= superheroe.poderes.join(', ') %></td>
+              <td class="py-3 px-6"><%= superheroe.aliados.join(', ') %></td>
+              <td class="py-3 px-6"><%= superheroe.enemigos.join(', ') %></td>
+              <td class="py-3 px-6 flex space-x-2">
+                <a href="api/editSuperhero/<%= superheroe.id %>" class="bg-blue-600 hover:bg-blue-500 py-1 px-3 rounded text-white font-bold transition duration-300">
+                  Editar
+                </a>
+                <form action="/api/heroes/delete/<%= superheroe.id %>?_method=DELETE" method="POST" onsubmit="return confirm('¿Estás seguro de que deseas eliminar este superhéroe?');">
+                  <button type="submit" class="bg-red-600 hover:bg-red-500 py-1 px-3 rounded text-white font-bold transition duration-300">
+                    Eliminar
+                  </button>
+                </form>
+              </td>
+            </tr>
+          <% }); %>
+        </tbody>
+      </table>
+    </div>
+  </main>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const closeButton = document.getElementById('close-btn');
+      if (closeButton) {
+        closeButton.addEventListener('click', function () {
+          const messageDiv = document.getElementById('success-message');
+          if (messageDiv) {
+            messageDiv.style.display = 'none';
+          }
+        });
+      }
+    });
+  </script>
+</body>
+
+</html>
